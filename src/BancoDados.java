@@ -14,11 +14,10 @@ public class BancoDados {
     public static Connection con;
 
     public static Connection conectar() {
-        Connection conexao = null;
         boolean status = false;
-        String msg = "";
 
         try {
+            //Tenta conectar ao banco.
             String nomeDriver = "com.mysql.jdbc.Driver";
             Class.forName(nomeDriver);
 
@@ -40,7 +39,7 @@ public class BancoDados {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return con;
+        return con; //Retorna true ou false. Geralmente um Exception acompanha o false
 
     }
 
@@ -101,10 +100,10 @@ public class BancoDados {
         }
     }
 
-    public static void delete(String t, String param) {
+    public static void delete(String tab, String param) {
         try {
             Statement sql = con.createStatement();
-            String query = "DELETE FROM " + t + " WHERE " + param;
+            String query = "DELETE FROM " + tab + " WHERE " + param;
             System.out.println(query);
             sql.executeUpdate(query);
         } catch (SQLException e) {
