@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS diario (
   idanotacao INT NOT NULL AUTO_INCREMENT,
   usuario_idusuario INT NOT NULL, /* Chave estrangeira para associar usuário às anotações*/
   anotacao VARCHAR(255) NULL,
+	tempo TIMESTAMP, /* Ideia de salvar a hora e o dia em que o registro fora feito*/
   PRIMARY KEY (idanotacao),
   INDEX fk_diario_usuario_idx (usuario_idusuario ASC),
   CONSTRAINT fk_diario_usuario
@@ -29,4 +30,4 @@ CREATE TABLE IF NOT EXISTS diario (
     REFERENCES usuario(idusuario))
 ENGINE = InnoDB;
 
-
+SELECT anotacao, usuario_idusuario FROM diario;

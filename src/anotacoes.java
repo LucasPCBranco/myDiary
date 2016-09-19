@@ -1,4 +1,3 @@
-
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -17,13 +16,14 @@ public class anotacoes extends javax.swing.JFrame {
      * Creates new form anotacoes
      */
     public String all;
+
     public anotacoes() {
+        pack();
+        setLocationRelativeTo(null); //Centraliza o JFrame
         String login = Play.l.getLogin();
         String k = BancoDados.select("idusuario", "usuario", "WHERE login = '" + login + "'");
         all = BancoDados.select("anotacao", "diario", "WHERE usuario_idusuario = '" + k + "'");
-        System.out.println(all);
         initComponents();
-       
 
     }
 
@@ -92,7 +92,7 @@ public class anotacoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        //Abre uma tela para o registro de uma anotação.
         JOptionPane.showMessageDialog(null, "Olá, " + Play.l.getLogin());
         String t = JOptionPane.showInputDialog("Insira a sua anotação");
         String login = Play.l.getLogin();
