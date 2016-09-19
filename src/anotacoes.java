@@ -52,6 +52,7 @@ public class anotacoes extends javax.swing.JFrame {
 
         txt.setColumns(20);
         txt.setRows(5);
+        txt.setEditable(false);
         txt.setText(all);
         jScrollPane1.setViewportView(txt);
 
@@ -98,6 +99,9 @@ public class anotacoes extends javax.swing.JFrame {
         String id = BancoDados.select("idusuario", "usuario", "WHERE login = '" + login + "'");
         BancoDados.insert("diario", "idanotacao, usuario_idusuario, anotacao", (null + ", '" + id + "', '" + t + "'"));
         SwingUtilities.updateComponentTreeUI(this); //Recarrega o Frame com as informações inseridas
+        //Para atualizar os dados, criamos uma nova tela
+        this.setVisible(false);
+        new anotacoes().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
