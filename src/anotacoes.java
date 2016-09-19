@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +18,7 @@ public class anotacoes extends javax.swing.JFrame {
      */
     public String all;
     public anotacoes() {
-         String login = Play.l.getLogin();
+        String login = Play.l.getLogin();
         String k = BancoDados.select("idusuario", "usuario", "WHERE login = '" + login + "'");
         all = BancoDados.select("anotacao", "diario", "WHERE usuario_idusuario = '" + k + "'");
         System.out.println(all);
@@ -96,6 +97,7 @@ public class anotacoes extends javax.swing.JFrame {
         String login = Play.l.getLogin();
         String id = BancoDados.select("idusuario", "usuario", "WHERE login = '" + login + "'");
         BancoDados.insert("diario", "idanotacao, usuario_idusuario, anotacao", (null + ", '" + id + "', '" + t + "'"));
+        SwingUtilities.updateComponentTreeUI(this); //Recarrega o Frame com as informações inseridas
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

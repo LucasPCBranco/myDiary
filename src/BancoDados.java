@@ -22,7 +22,7 @@ public class BancoDados {
             Class.forName(nomeDriver);
 
             String servidor = "localhost",
-                    bd = "mydb", //Mudar nome do Banco de Dados
+                    bd = "myDiary", //Mudar nome do Banco de Dados
                     url = "jdbc:mysql://" + servidor + "/" + bd,
                     usuario = "root",
                     senha = "";
@@ -67,8 +67,15 @@ public class BancoDados {
         try {
             Statement sql = con.createStatement();
             ResultSet resultado = sql.executeQuery(query);
+            int help = 0; //auxiliador em while
             while (resultado.next()) {
+                //Caso apenas 1 resultado for encontrado, ele cria uma msg simples
+                if(help < 1){
+                help++;
                 msg = resultado.getString(campo);
+            }else{ //Se for mais de um, ele cria uma string concatenada
+                msg+= "\n" + resultado.getString(campo);
+                }
             }
             return msg;
         } catch (SQLException e) {
